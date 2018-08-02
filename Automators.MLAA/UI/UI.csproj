@@ -115,9 +115,14 @@
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{47ced7e3-f175-498d-8f0f-8f98ff347057}</Project>
       <Name>Entity</Name>
-	<ProjectReference Include="..\DataAccess\DataAccess.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{ebde4c69-12e4-4539-a459-5c9209aa9f4b}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{f9eb301b-5c76-4024-8a29-db14060c8516}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

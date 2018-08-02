@@ -10,23 +10,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using Automator.DataAccess;
 using DevExpress.Data.Helpers;
 using Entity;
+using Utility;
 
 
 namespace Automator.UI
 {
     public partial class Form1 : Form
     {
-
-        private string projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
+        private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
         private string _functionListFilePath;
         private string _moduleListFilePath;
 
-        private List<Entity.Function> functionsList = new List<Function>();
-        private List<string> moduleList = new List<string>();
-        
+        private List<Entity.Function> _functionsList = new List<Function>();
+        private List<string> _moduleList = new List<string>();
 
+        DBHelper dbHelper = new DBHelper();
         public Form1()
         {
             InitializeComponent();
@@ -34,17 +35,17 @@ namespace Automator.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            _functionListFilePath = projectPath + @"\ApplicationFiles\functionList.xml";
-            _moduleListFilePath = projectPath + @"\ApplicationFiles\module_list.xml";
+            _functionListFilePath = _projectPath + @"\ApplicationFiles\functionList.xml";
+            _moduleListFilePath = _projectPath + @"\ApplicationFiles\module_list.xml";
 
             ReadFuntions(_functionListFilePath);
             ReadModules(_moduleListFilePath);
         }
 
 
-        private void ReadFuntions(string funtionpath)
+        private void ReadFuntions(string functionpath)
         {
-            XDocument xdocument = XDocument.Load(funtionpath);
+            XDocument xdocument = XDocument.Load(functionpath);
             IEnumerable<XElement> xmlfunctions = xdocument.Root.Elements();
 
             foreach (var _function in xmlfunctions.Elements())
@@ -53,7 +54,7 @@ namespace Automator.UI
                 List<string> parameters = new List<string>();
 
                 func.Name = _function.FirstAttribute.Value;
-                func.Description = _function.LastAttribute.Value;
+                func.Description = _function.LastAttribute.Value.Replace("Description:","");
                 func.Parameters = parameters;
 
                 if (_function.HasElements)
@@ -64,7 +65,7 @@ namespace Automator.UI
                     }
                 }
 
-                functionsList.Add(func);
+                _functionsList.Add(func);
             }
         }
 
@@ -75,9 +76,34 @@ namespace Automator.UI
             IEnumerable<XElement> modules = xdocument.Root.Elements();
 
             foreach (var module in modules)
-                moduleList.Add(module.Name.ToString());
+                _moduleList.Add(module.Name.ToString());
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (var _function in _functionsList)
+            {
+                string parameters = String.Empty;
 
+                if (_function.Parameters != null)
+                    foreach (var param in _function.Parameters)
+                        parameters += param + " ";
+
+                string query = "Insert into Functions values('" + _function.Name + "'," + "'" + parameters + "')";
+                dbHelper.ExecuteNonQuery(query);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (var _function in _functionsList)
+            {
+                string query1 = "Insert into TrainingData values('" + _function.Name + "'," + "'" + _function.Name.ToLowercaseNamingConvention(true) + "')";
+                dbHelper.ExecuteNonQuery(query1);
+
+                string query2 = "Insert into TrainingData values('" + _function.Name + "'," + "'" + _function.Description.Replace("'","") + "')";
+                dbHelper.ExecuteNonQuery(query2);
+            }
+        }
     }
 }
