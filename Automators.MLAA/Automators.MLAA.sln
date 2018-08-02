@@ -1,11 +1,8 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{4896D754-CF84-4865-B5E8-A235077CA63C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{47CED7E3-F175-498D-8F0F-8F98FF347057}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{D9CE554C-8FD9-4C2F-88A3-DEC4035EFA2A}"
@@ -18,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4896D754-CF84-4865-B5E8-A235077CA63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4896D754-CF84-4865-B5E8-A235077CA63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4896D754-CF84-4865-B5E8-A235077CA63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4896D754-CF84-4865-B5E8-A235077CA63C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{47CED7E3-F175-498D-8F0F-8F98FF347057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{47CED7E3-F175-498D-8F0F-8F98FF347057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47CED7E3-F175-498D-8F0F-8F98FF347057}.Release|Any CPU.ActiveCfg = Release|Any CPU
