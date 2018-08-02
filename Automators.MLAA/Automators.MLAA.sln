@@ -12,6 +12,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{F9EB301B-5C76-4024-8A29-DB14060C8516}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{4FF459B6-12F1-4D3F-B5D5-A03087E8C140}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\LemmaSharp.dll = Libs\LemmaSharp.dll
+		Libs\LemmaSharpPrebuilt.dll = Libs\LemmaSharpPrebuilt.dll
+		Libs\LemmaSharpPrebuiltCompact.dll = Libs\LemmaSharpPrebuiltCompact.dll
+		Libs\Lzma#.dll = Libs\Lzma#.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CE043E67-44DE-4191-A8DD-C1F6055F5D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +48,10 @@ Global
 		{F9EB301B-5C76-4024-8A29-DB14060C8516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9EB301B-5C76-4024-8A29-DB14060C8516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9EB301B-5C76-4024-8A29-DB14060C8516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE043E67-44DE-4191-A8DD-C1F6055F5D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE043E67-44DE-4191-A8DD-C1F6055F5D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE043E67-44DE-4191-A8DD-C1F6055F5D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE043E67-44DE-4191-A8DD-C1F6055F5D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
