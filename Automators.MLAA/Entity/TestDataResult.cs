@@ -6,6 +6,7 @@ namespace Entity
         public TestDataResult()
         {
             SelectedScore = 0.0;
+            Functions = new List<Function>();
         }
 
         public string SelectedFunction { get; set; }
