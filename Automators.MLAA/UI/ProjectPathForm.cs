@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Automator.UI
 {
-    public partial class Analyse : Form
+    public partial class ProjectPathForm : Form
     {
-        public Analyse()
+        public ProjectPathForm()
         {
             InitializeComponent();
         }

@@ -22,7 +22,8 @@ namespace Automator.UI
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new Startup());
+            Application.Run(new StartupForm());
+
         }
     }
 }

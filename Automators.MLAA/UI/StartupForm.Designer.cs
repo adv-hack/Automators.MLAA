@@ -1,6 +1,6 @@
 ﻿namespace Automator.UI
 {
-    partial class Startup
+    partial class StartupForm
     {
         /// <summary>
         /// Required designer variable.

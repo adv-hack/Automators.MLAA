@@ -78,25 +78,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analyse.cs">
+    <Compile Include="AnalyseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Analyse.Designer.cs">
-      <DependentUpon>Analyse.cs</DependentUpon>
+    <Compile Include="AnalyseForm.Designer.cs">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Startup.cs">
+    <Compile Include="ProjectPathForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Startup.Designer.cs">
-      <DependentUpon>Startup.cs</DependentUpon>
+    <Compile Include="ProjectPathForm.Designer.cs">
+      <DependentUpon>ProjectPathForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartupForm.Designer.cs">
+      <DependentUpon>StartupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Analyse.resx">
-      <DependentUpon>Analyse.cs</DependentUpon>
+    <EmbeddedResource Include="AnalyseForm.resx">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Startup.resx">
-      <DependentUpon>Startup.cs</DependentUpon>
+    <EmbeddedResource Include="ProjectPathForm.resx">
+      <DependentUpon>ProjectPathForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartupForm.resx">
+      <DependentUpon>StartupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -110,6 +119,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Analyse.datasource" />
     <None Include="Properties\DataSources\Automator.UI.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\Automator.UI.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />

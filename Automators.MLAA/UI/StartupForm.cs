@@ -12,25 +12,29 @@ using System.Xml;
 using System.Xml.Linq;
 using Automator.DataAccess;
 using DevExpress.Data.Helpers;
+using Engine;
 using Entity;
 using Utility;
 
 
 namespace Automator.UI
 {
-    public partial class Startup : Form
+    public partial class StartupForm : Form
     {
         private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
         private string _functionListFilePath;
         private string _moduleListFilePath;
 
-        private List<Function> _functionsList = new List<Function>();
-        private List<string> _moduleList = new List<string>();
+        public List<Function> _functionsList = new List<Function>();
+        public List<string> _moduleList = new List<string>();
+        public List<TestDataResult> _testdataresult = new List<TestDataResult>();
 
         private string _currentModuleName = string.Empty;
 
         DBHelper dbHelper = new DBHelper();
-        public Startup()
+        Categoriser categoriser = new Categoriser();
+
+        public StartupForm()
         {
             InitializeComponent();
         }
@@ -122,7 +126,13 @@ namespace Automator.UI
 
         private void btnAnalyse_Click(object sender, EventArgs e)
         {
-            //To do ananlyse
+            _testdataresult = categoriser.Categorise(txtcasesteps.Lines.ToList<string>());
+
+            AnalyseForm analyse = new AnalyseForm();
+            analyse.TestDataResults = _testdataresult;
+            analyse._moduleList = _moduleList;
+
+            analyse.Show();
         }
     }
 }
