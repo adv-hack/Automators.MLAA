@@ -125,6 +125,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{d9ce554c-8fd9-4c2f-88a3-dec4035efa2a}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{47ced7e3-f175-498d-8f0f-8f98ff347057}</Project>
       <Name>Entity</Name>
