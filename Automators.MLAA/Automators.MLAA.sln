@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automator.UI", "Automator.UI\Automator.UI.csproj", "{4896D754-CF84-4865-B5E8-A235077CA63C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "Automator.UI\UI.csproj", "{4896D754-CF84-4865-B5E8-A235077CA63C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automator.DataAccess", "Automator.DataAccess\Automator.DataAccess.csproj", "{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Automator.DataAccess\DataAccess.csproj", "{EBDE4C69-12E4-4539-A459-5C9209AA9F4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
