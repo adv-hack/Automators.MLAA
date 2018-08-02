@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.lblModuleList = new System.Windows.Forms.Label();
-            this.txtTestCaseID = new System.Windows.Forms.TextBox();
-            this.btnAnalyse = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtProjectPath = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblModuleList
@@ -44,52 +44,59 @@
             this.lblModuleList.TabIndex = 4;
             this.lblModuleList.Text = "Path";
             // 
-            // txtTestCaseID
+            // txtProjectPath
             // 
-            this.txtTestCaseID.Location = new System.Drawing.Point(92, 37);
-            this.txtTestCaseID.Name = "txtTestCaseID";
-            this.txtTestCaseID.Size = new System.Drawing.Size(297, 20);
-            this.txtTestCaseID.TabIndex = 7;
+            this.txtProjectPath.Location = new System.Drawing.Point(92, 37);
+            this.txtProjectPath.Name = "txtProjectPath";
+            this.txtProjectPath.Size = new System.Drawing.Size(297, 20);
+            this.txtProjectPath.TabIndex = 7;
             // 
-            // btnAnalyse
+            // btnCancel
             // 
-            this.btnAnalyse.Location = new System.Drawing.Point(267, 92);
-            this.btnAnalyse.Name = "btnAnalyse";
-            this.btnAnalyse.Size = new System.Drawing.Size(75, 23);
-            this.btnAnalyse.TabIndex = 16;
-            this.btnAnalyse.Text = "Cancel";
-            this.btnAnalyse.UseVisualStyleBackColor = true;
+            this.btnCancel.Location = new System.Drawing.Point(267, 92);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnClear
+            // btnOk
             // 
-            this.btnClear.Location = new System.Drawing.Point(167, 92);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "Ok";
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnOk.Location = new System.Drawing.Point(167, 92);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 15;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // button1
+            // btnBrowse
             // 
-            this.button1.Location = new System.Drawing.Point(405, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBrowse.Location = new System.Drawing.Point(405, 37);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowse.TabIndex = 17;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // ProjectPathForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 159);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnAnalyse);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.txtTestCaseID);
+            this.ClientSize = new System.Drawing.Size(538, 150);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.txtProjectPath);
             this.Controls.Add(this.lblModuleList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ProjectPathForm";
-            this.Text = "ProjectPathForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "MLATA";
+            this.Load += new System.EventHandler(this.ProjectPathForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,9 +105,9 @@
         #endregion
 
         private System.Windows.Forms.Label lblModuleList;
-        private System.Windows.Forms.TextBox txtTestCaseID;
-        private System.Windows.Forms.Button btnAnalyse;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtProjectPath;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnBrowse;
     }
 }

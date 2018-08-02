@@ -28,184 +28,160 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.txtTestCaseID = new System.Windows.Forms.TextBox();
-            this.lblTestCase = new System.Windows.Forms.Label();
-            this.cmbModules = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.lblModuleList = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.testDataResultsBindingSource = new System.Windows.Forms.BindingSource();
-            this.analyseBindingSource = new System.Windows.Forms.BindingSource();
-            this.startupBindingSource = new System.Windows.Forms.BindingSource();
-            this.functionsBindingSource = new System.Windows.Forms.BindingSource();
-            this.selectedFunctionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectedScoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDataResultsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startupBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).BeginInit();
+            this.cmbModules = new System.Windows.Forms.ComboBox();
+            this.lblTestCase = new System.Windows.Forms.Label();
+            this.txtTestCaseID = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtcasesteps = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lblGuidelines = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnAnalyse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtDescription
+            // menuStrip1
             // 
-            this.txtDescription.Location = new System.Drawing.Point(545, 35);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(351, 20);
-            this.txtDescription.TabIndex = 14;
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(479, 38);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(60, 13);
-            this.lblDescription.TabIndex = 13;
-            this.lblDescription.Text = "Description";
-            // 
-            // txtTestCaseID
-            // 
-            this.txtTestCaseID.Location = new System.Drawing.Point(324, 35);
-            this.txtTestCaseID.Name = "txtTestCaseID";
-            this.txtTestCaseID.Size = new System.Drawing.Size(132, 20);
-            this.txtTestCaseID.TabIndex = 12;
-            // 
-            // lblTestCase
-            // 
-            this.lblTestCase.AutoSize = true;
-            this.lblTestCase.Location = new System.Drawing.Point(249, 38);
-            this.lblTestCase.Name = "lblTestCase";
-            this.lblTestCase.Size = new System.Drawing.Size(69, 13);
-            this.lblTestCase.TabIndex = 11;
-            this.lblTestCase.Text = "Test Case ID";
-            // 
-            // cmbModules
-            // 
-            this.cmbModules.FormattingEnabled = true;
-            this.cmbModules.Location = new System.Drawing.Point(88, 34);
-            this.cmbModules.Name = "cmbModules";
-            this.cmbModules.Size = new System.Drawing.Size(133, 21);
-            this.cmbModules.TabIndex = 10;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(923, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // lblModuleList
             // 
             this.lblModuleList.AutoSize = true;
-            this.lblModuleList.Location = new System.Drawing.Point(9, 38);
+            this.lblModuleList.Location = new System.Drawing.Point(24, 32);
             this.lblModuleList.Name = "lblModuleList";
             this.lblModuleList.Size = new System.Drawing.Size(73, 13);
-            this.lblModuleList.TabIndex = 9;
+            this.lblModuleList.TabIndex = 3;
             this.lblModuleList.Text = "Module Name";
             // 
-            // dataGridView1
+            // cmbModules
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.selectedFunctionDataGridViewTextBoxColumn,
-            this.selectedScoreDataGridViewTextBoxColumn,
-            this.orderDataGridViewTextBoxColumn,
-            this.testDataDataGridViewTextBoxColumn,
-            this.Column1});
-            this.dataGridView1.DataSource = this.testDataResultsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(829, 372);
-            this.dataGridView1.TabIndex = 15;
+            this.cmbModules.FormattingEnabled = true;
+            this.cmbModules.Location = new System.Drawing.Point(103, 28);
+            this.cmbModules.Name = "cmbModules";
+            this.cmbModules.Size = new System.Drawing.Size(133, 21);
+            this.cmbModules.TabIndex = 4;
+            this.cmbModules.SelectedIndexChanged += new System.EventHandler(this.cmbModules_SelectedIndexChanged);
             // 
-            // testDataResultsBindingSource
+            // lblTestCase
             // 
-            this.testDataResultsBindingSource.DataMember = "TestDataResults";
-            this.testDataResultsBindingSource.DataSource = this.analyseBindingSource;
+            this.lblTestCase.AutoSize = true;
+            this.lblTestCase.Location = new System.Drawing.Point(264, 32);
+            this.lblTestCase.Name = "lblTestCase";
+            this.lblTestCase.Size = new System.Drawing.Size(69, 13);
+            this.lblTestCase.TabIndex = 5;
+            this.lblTestCase.Text = "Test Case ID";
             // 
-            // analyseBindingSource
+            // txtTestCaseID
             // 
-            this.analyseBindingSource.DataSource = typeof(Automator.UI.AnalyseForm);
+            this.txtTestCaseID.Location = new System.Drawing.Point(339, 29);
+            this.txtTestCaseID.Name = "txtTestCaseID";
+            this.txtTestCaseID.Size = new System.Drawing.Size(132, 20);
+            this.txtTestCaseID.TabIndex = 6;
             // 
-            // startupBindingSource
+            // lblDescription
             // 
-            this.startupBindingSource.DataSource = typeof(Automator.UI.StartupForm);
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(494, 32);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 7;
+            this.lblDescription.Text = "Description";
             // 
-            // functionsBindingSource
+            // txtDescription
             // 
-            this.functionsBindingSource.DataMember = "Functions";
-            this.functionsBindingSource.DataSource = this.testDataResultsBindingSource;
+            this.txtDescription.Location = new System.Drawing.Point(560, 29);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(351, 20);
+            this.txtDescription.TabIndex = 8;
             // 
-            // selectedFunctionDataGridViewTextBoxColumn
+            // txtcasesteps
             // 
-            this.selectedFunctionDataGridViewTextBoxColumn.DataPropertyName = "SelectedFunction";
-            this.selectedFunctionDataGridViewTextBoxColumn.HeaderText = "SelectedFunction";
-            this.selectedFunctionDataGridViewTextBoxColumn.Name = "selectedFunctionDataGridViewTextBoxColumn";
+            this.txtcasesteps.Location = new System.Drawing.Point(27, 177);
+            this.txtcasesteps.Multiline = true;
+            this.txtcasesteps.Name = "txtcasesteps";
+            this.txtcasesteps.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtcasesteps.Size = new System.Drawing.Size(884, 167);
+            this.txtcasesteps.TabIndex = 9;
             // 
-            // selectedScoreDataGridViewTextBoxColumn
+            // label1
             // 
-            this.selectedScoreDataGridViewTextBoxColumn.DataPropertyName = "SelectedScore";
-            this.selectedScoreDataGridViewTextBoxColumn.HeaderText = "SelectedScore";
-            this.selectedScoreDataGridViewTextBoxColumn.Name = "selectedScoreDataGridViewTextBoxColumn";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "TestCase Steps";
             // 
-            // orderDataGridViewTextBoxColumn
+            // textBox2
             // 
-            this.orderDataGridViewTextBoxColumn.DataPropertyName = "Order";
-            this.orderDataGridViewTextBoxColumn.HeaderText = "Order";
-            this.orderDataGridViewTextBoxColumn.Name = "orderDataGridViewTextBoxColumn";
+            this.textBox2.Location = new System.Drawing.Point(27, 89);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(884, 43);
+            this.textBox2.TabIndex = 11;
+            this.textBox2.Text = "Test cases should always be added in new line.  Parameter values should be in dou" +
+    "ble quotes.";
             // 
-            // testDataDataGridViewTextBoxColumn
+            // lblGuidelines
             // 
-            this.testDataDataGridViewTextBoxColumn.DataPropertyName = "TestData";
-            this.testDataDataGridViewTextBoxColumn.HeaderText = "TestData";
-            this.testDataDataGridViewTextBoxColumn.Name = "testDataDataGridViewTextBoxColumn";
+            this.lblGuidelines.AutoSize = true;
+            this.lblGuidelines.Location = new System.Drawing.Point(24, 63);
+            this.lblGuidelines.Name = "lblGuidelines";
+            this.lblGuidelines.Size = new System.Drawing.Size(56, 13);
+            this.lblGuidelines.TabIndex = 12;
+            this.lblGuidelines.Text = "Guidelines";
             // 
-            // button1
+            // btnClear
             // 
-            this.button1.Location = new System.Drawing.Point(445, 472);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Submit";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnClear.Location = new System.Drawing.Point(257, 393);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // button2
+            // btnAnalyse
             // 
-            this.button2.Location = new System.Drawing.Point(272, 472);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAnalyse.Location = new System.Drawing.Point(396, 393);
+            this.btnAnalyse.Name = "btnAnalyse";
+            this.btnAnalyse.Size = new System.Drawing.Size(75, 23);
+            this.btnAnalyse.TabIndex = 14;
+            this.btnAnalyse.Text = "Analyse";
+            this.btnAnalyse.UseVisualStyleBackColor = true;
+            this.btnAnalyse.Click += new System.EventHandler(this.btnAnalyse_Click);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Analyse
+            // Startup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 524);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(923, 525);
+            this.Controls.Add(this.btnAnalyse);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.lblGuidelines);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtcasesteps);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.txtTestCaseID);
             this.Controls.Add(this.lblTestCase);
             this.Controls.Add(this.cmbModules);
             this.Controls.Add(this.lblModuleList);
-            this.Name = "Analyse";
-            this.Text = "Analyse";
-            this.Load += new System.EventHandler(this.Analyse_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDataResultsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startupBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).EndInit();
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Startup";
+            this.Text = "MLATA";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,23 +189,18 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox txtTestCaseID;
-        private System.Windows.Forms.Label lblTestCase;
-        private System.Windows.Forms.ComboBox cmbModules;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label lblModuleList;
-        private System.Windows.Forms.BindingSource startupBindingSource;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource analyseBindingSource;
-        private System.Windows.Forms.BindingSource testDataResultsBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn selectedFunctionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn selectedScoreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn testDataDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource functionsBindingSource;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.ComboBox cmbModules;
+        private System.Windows.Forms.Label lblTestCase;
+        private System.Windows.Forms.TextBox txtTestCaseID;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtcasesteps;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label lblGuidelines;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnAnalyse;
     }
 }

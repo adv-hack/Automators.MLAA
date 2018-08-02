@@ -1,75 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+using Automator.DataAccess;
+using DevExpress.Data.Helpers;
+using Engine;
 using Entity;
+using Utility;
+
 
 namespace Automator.UI
 {
     public partial class AnalyseForm : Form
     {
+        private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
+        private string _moduleListFilePath;
 
-        private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso\" + "DataSheets";
-
-        public List<TestDataResult> TestDataResults { get; set; }
         public List<string> _moduleList = new List<string>();
+        public List<TestDataResult> _testdataresult = new List<TestDataResult>();
+
+        private string _currentModuleName = string.Empty;
+
+        private Categoriser categoriser;
 
         public AnalyseForm()
         {
             InitializeComponent();
         }
 
-        private void Analyse_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            _moduleListFilePath = _projectPath + @"\ApplicationFiles\module_list.xml";
+            ReadModules(_moduleListFilePath);
             cmbModules.DataSource = _moduleList;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ReadModules(string modulepath)
         {
-            DialogResult dialogResult = MessageBox.Show(@"Are you sure you want to save XML", @"MLATA", MessageBoxButtons.OKCancel);
+            XDocument xdocument = XDocument.Load(modulepath);
+            IEnumerable<XElement> modules = xdocument.Root.Elements();
 
-            if (dialogResult == DialogResult.OK)
-            {
-                //Save the xmls
-                SaveTCsXml();
-                SaveDriverXml();
-            }
-
-            if(dialogResult == DialogResult.Cancel)
-                Application.Exit();
-
+            foreach (var module in modules)
+                _moduleList.Add(module.Name.ToString());
         }
 
-
-        private void SaveDriverXml()
+        private void cmbModules_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (System.IO.StreamWriter file =
-                new System.IO.StreamWriter(_projectPath + "/" + txtTestCaseID.Text + "Driver.xml"))
-            {
-                    file.WriteLine("Driver file created");
-            }
+            _currentModuleName = cmbModules.Text;
         }
 
-        private void SaveTCsXml()
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            using (System.IO.StreamWriter file =
-                new System.IO.StreamWriter(_projectPath + "/" + txtTestCaseID.Text + "TCs.xml"))
-            {
-                foreach (var testData in TestDataResults)
-                        file.WriteLine("TC created");
-            }
-
+            txtcasesteps.Clear();
         }
 
-        private void ModulesXml()
+        private void btnAnalyse_Click(object sender, EventArgs e)
         {
+            categoriser = new Categoriser();
+            _testdataresult = categoriser.Categorise(txtcasesteps.Lines.ToList<string>());
 
+            ShowResultsForm showResults = new ShowResultsForm();
+            showResults.TestDataResults = _testdataresult;
+            showResults._moduleList = _moduleList;
+            showResults.Show();
         }
     }
 }

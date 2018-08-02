@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.108.0\lib\net451\System.Data.SQLite.dll</HintPath>
@@ -78,11 +79,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalyseForm.cs">
+    <Compile Include="ShowResultsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnalyseForm.Designer.cs">
-      <DependentUpon>AnalyseForm.cs</DependentUpon>
+    <Compile Include="ShowResultsForm.Designer.cs">
+      <DependentUpon>ShowResultsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectPathForm.cs">
       <SubType>Form</SubType>
@@ -90,22 +91,22 @@
     <Compile Include="ProjectPathForm.Designer.cs">
       <DependentUpon>ProjectPathForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StartupForm.cs">
+    <Compile Include="AnalyseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartupForm.Designer.cs">
-      <DependentUpon>StartupForm.cs</DependentUpon>
+    <Compile Include="AnalyseForm.Designer.cs">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AnalyseForm.resx">
-      <DependentUpon>AnalyseForm.cs</DependentUpon>
+    <EmbeddedResource Include="ShowResultsForm.resx">
+      <DependentUpon>ShowResultsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectPathForm.resx">
       <DependentUpon>ProjectPathForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StartupForm.resx">
-      <DependentUpon>StartupForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnalyseForm.resx">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
