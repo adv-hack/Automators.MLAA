@@ -18,17 +18,19 @@ using Utility;
 
 namespace Automator.UI
 {
-    public partial class Form1 : Form
+    public partial class Startup : Form
     {
         private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
         private string _functionListFilePath;
         private string _moduleListFilePath;
 
-        private List<Entity.Function> _functionsList = new List<Function>();
+        private List<Function> _functionsList = new List<Function>();
         private List<string> _moduleList = new List<string>();
 
+        private string _currentModuleName = string.Empty;
+
         DBHelper dbHelper = new DBHelper();
-        public Form1()
+        public Startup()
         {
             InitializeComponent();
         }
@@ -40,6 +42,8 @@ namespace Automator.UI
 
             ReadFuntions(_functionListFilePath);
             ReadModules(_moduleListFilePath);
+
+            cmbModules.DataSource = _moduleList;
         }
 
 
@@ -104,6 +108,21 @@ namespace Automator.UI
                 string query2 = "Insert into TrainingData values('" + _function.Name + "'," + "'" + _function.Description.Replace("'","") + "')";
                 dbHelper.ExecuteNonQuery(query2);
             }
+        }
+
+        private void cmbModules_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentModuleName = cmbModules.Text;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtcasesteps.Clear();
+        }
+
+        private void btnAnalyse_Click(object sender, EventArgs e)
+        {
+            //To do ananlyse
         }
     }
 }
