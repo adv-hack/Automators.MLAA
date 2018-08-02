@@ -22,11 +22,10 @@ namespace Automator.DataAccess
 
         public DataTable ExecuteQuery(string commandText)
         {
+            Open();
             var command = new SQLiteCommand(commandText, _connection);
             var da = new SQLiteDataAdapter();
             var dt = new DataTable();
-
-            Open();
 
             da.SelectCommand = command;
             da.Fill(dt);
