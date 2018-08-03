@@ -21,7 +21,7 @@ namespace Automator.UI
 {
     public partial class AnalyseForm : Form
     {
-        private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
+        private string _projectPath;
         private string _moduleListFilePath;
 
         public List<string> _moduleList = new List<string>();
@@ -38,6 +38,7 @@ namespace Automator.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            _projectPath = ConfigurationManager.AppSettings["ProjectPath"];
             _moduleListFilePath = _projectPath + @"\ApplicationFiles\module_list.xml";
             ReadModules(_moduleListFilePath);
             cmbModules.DataSource = _moduleList;
@@ -70,6 +71,8 @@ namespace Automator.UI
             ShowResultsForm showResults = new ShowResultsForm();
             showResults.TestDataResults = _testdataresult;
             showResults._moduleList = _moduleList;
+            showResults._tcID = txtTestCaseID.Text;
+            showResults._tcDesc = txtDescription.Text;
             showResults.Show();
         }
     }

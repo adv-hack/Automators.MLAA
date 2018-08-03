@@ -15,10 +15,5 @@ namespace Entity
         public double SelectedScore { get; set; }
         public int Order { get; set; }
         public string TestData { get; set; }
-
-        public override string ToString()
-        {
-            return SelectedFunction;
-        }
-    }
+     }
 }

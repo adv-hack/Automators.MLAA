@@ -19,10 +19,8 @@ namespace Automator.UI
 {
     public partial class ProjectPathForm : Form
     {
-        private string _projectPath = @"E:\HackOverflow2018\Hackathon\Progresso";
+        private string _projectPath;
         private string _functionListFilePath =  @"\ApplicationFiles\functionList.xml";
-        
-
         private List<Function> _functionsList = new List<Function>();
 
         DBHelper _dbHelper = new DBHelper();
@@ -34,23 +32,26 @@ namespace Automator.UI
 
         private void ProjectPathForm_Load(object sender, EventArgs e)
         {
-          //  _projectPath = ConfigurationManager.ConnectionStrings["ProjectPath"].ConnectionString;
+            _projectPath = ConfigurationManager.AppSettings["ProjectPath"].ToString();
             txtProjectPath.Text = _projectPath;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            _functionListFilePath = _projectPath + @"\ApplicationFiles\functionList.xml";
-           
-            if (_projectPath != String.Empty)
+            if (!string.IsNullOrEmpty(txtProjectPath.Text))
             {
-                //ReadFuntions(_functionListFilePath);
-                //AddInitialFuntionsDataToDB();
-                //AddTrainingDataToDB();
+                if (!txtProjectPath.Text.ToLower().Equals(_projectPath.ToLower()))
+                {
+                    _functionListFilePath = ConfigurationManager.AppSettings["ProjectPath"] + @"\ApplicationFiles\functionList.xml";
+                    ReadFuntions(_functionListFilePath);
+                    AddInitialFuntionsDataToDB();
+                    AddTrainingDataToDB();
+                }
+                setAppSetting("ProjectPath", txtProjectPath.Text);
+                
+                AnalyseForm startupForm = new AnalyseForm();
+                startupForm.Show();
             }
-
-            AnalyseForm startupForm = new AnalyseForm();
-            startupForm.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -119,6 +120,23 @@ namespace Automator.UI
                 string query2 = "Insert into TrainingData values('" + _function.Name + "'," + "'" + _function.Description.Replace("'", "") + "')";
                 _dbHelper.ExecuteNonQuery(query2);
             }
+        }
+
+        private void setAppSetting(string key, string value)
+        {
+            //Load appsettings
+            Configuration config = ConfigurationManager.OpenExeConfiguration(
+                System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //Check if key exists in the settings
+            if (config.AppSettings.Settings[key] != null)
+            {
+                //If key exists, delete it
+                config.AppSettings.Settings.Remove(key);
+            }
+            //Add new key-value pair
+            config.AppSettings.Settings.Add(key, value);
+            //Save the changed settings
+            config.Save(ConfigurationSaveMode.Modified);
         }
     }
 }
