@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using Automator.DataAccess;
-using DevExpress.Data.Helpers;
 using Engine;
 using Entity;
 using Utility;
@@ -34,6 +33,15 @@ namespace Automator.UI
         public AnalyseForm()
         {
             InitializeComponent();
+
+            Icon icon = Icon.ExtractAssociatedIcon("images\\desktop_icon_new.ico");
+
+            this.Icon = icon;
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            //empty implementation
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -68,12 +76,37 @@ namespace Automator.UI
             categoriser = new Categoriser();
             _testdataresult = categoriser.Categorise(txtcasesteps.Lines.ToList<string>());
 
-            ShowResultsForm showResults = new ShowResultsForm();
-            showResults.TestDataResults = _testdataresult;
-            showResults._moduleList = _moduleList;
-            showResults._tcID = txtTestCaseID.Text;
-            showResults._tcDesc = txtDescription.Text;
+            var showResults = new ShowResultsForm
+            {
+                TestDataResults = _testdataresult,
+                ModuleList = _moduleList,
+                TcId = txtTestCaseID.Text,
+                TcDesc = txtDescription.Text,
+                RefFormAnalyzeForm = this
+            };
+
+            this.Visible = false;
             showResults.Show();
+        }
+
+        private void lblGuidelines_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1. Test cases should always be added in new line.  Parameter values should be in double quotes.", "Guidelines", MessageBoxButtons.OK);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Do you wan to Exit the application?", "Exit Application", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

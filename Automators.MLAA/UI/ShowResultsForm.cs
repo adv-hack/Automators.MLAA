@@ -14,7 +14,6 @@ using Automator.DataAccess;
 using Entity;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using DevExpress.Data.Filtering.Helpers;
 using Engine;
 
 namespace Automator.UI
@@ -24,73 +23,80 @@ namespace Automator.UI
 
         private readonly string _projectPath;
         private readonly string _projectPathDataSheets;
-
         public List<TestDataResult> TestDataResults { get; set; }
-        public List<string> _moduleList = new List<string>();
-        public string _tcID;
-        public string _tcDesc;
+        public List<string> ModuleList = new List<string>();
+        public string TcId;
+        public string TcDesc;
+        public Form RefFormAnalyzeForm { get; set; }
 
         public ShowResultsForm()
         {
-            //_projectPath = "C:\\Progresso\\";
-            //return;;
             _projectPath = ConfigurationManager.AppSettings["ProjectPath"];
             _projectPathDataSheets = _projectPath  + @"\DataSheets";
 
+
             InitializeComponent();
+
+            Icon icon = Icon.ExtractAssociatedIcon("images\\desktop_icon_new.ico");
+
+            this.Icon = icon;
+
             this.Load += ShowResultsForm_Load;
         }
 
         private void Analyse_Load(object sender, EventArgs e)
         {
-            cmbModules.DataSource = _moduleList;
-            txtTestCaseID.Text = _tcID;
-            txtDescription.Text = _tcDesc;
+            cmbModules.DataSource = ModuleList;
+            txtTestCaseID.Text = TcId;
+            txtDescription.Text = TcDesc;
         }
 
         private void ShowResultsForm_Load(object sender, EventArgs e)
         {
+
+            var col5 = new DataGridViewTextBoxColumn
+            {
+                Name = " ",
+                ValueType = typeof(string),
+                Width = 35
+            };
+
+            dataGridView1.Columns.Add(col5);
+
             var col1 = new DataGridViewTextBoxColumn
             {
                 Name = "Test Data",
-                ValueType = typeof(string)
+                ValueType = typeof(string),
+                Width = 300
             };
 
-            col1.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView1.Columns.Add(col1);
 
             var col2 = new DataGridViewComboBoxColumn
             {
                 Name = "Function",
-                ValueType = typeof(string)
+                ValueType = typeof(string),
+                Width = 200
             };
             dataGridView1.Columns.Add(col2);
 
             var col3 = new DataGridViewTextBoxColumn
             {
                 Name = "Params",
-                ValueType = typeof(string)
-                
+                ValueType = typeof(string),
+                Width = 200
             };
 
-            col3.ReadOnly = false;
             dataGridView1.Columns.Add(col3);
 
             var col4 = new DataGridViewButtonColumn()
             {
-                Name = "Params edit",
-                ValueType = typeof(string)
+                Name = " ",
+                ValueType = typeof(string),
+                Width = 30
             };
-            dataGridView1.Columns.Add(col4);
 
-            var col5 = new DataGridViewTextBoxColumn
-            {
-                Name = "Order",
-                ValueType = typeof(string)
-            };
-            
-            dataGridView1.Columns.Add(col5);
-            dataGridView1.Columns["Order"].Visible = false;
+            dataGridView1.Columns.Add(col4);
 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSize = true;
@@ -100,28 +106,27 @@ namespace Automator.UI
             {
                 var row = (DataGridViewRow)(dataGridView1.Rows[0].Clone());
 
-                var textCell = (DataGridViewTextBoxCell)(row.Cells[0]);
+                var textCell5 = (DataGridViewTextBoxCell)(row.Cells[0]);
+                textCell5.ValueType = typeof(string);
+                textCell5.Value = data.Order;
+                dataGridView1.Rows.Add(row);
+
+                var textCell = (DataGridViewTextBoxCell)(row.Cells[1]);
                 textCell.ValueType = typeof(string);
                 textCell.Value = data.TestData;
 
-                var comboCell = (DataGridViewComboBoxCell)(row.Cells[1]);
+                var comboCell = (DataGridViewComboBoxCell)(row.Cells[2]);
                 comboCell.ValueType = typeof(string);
                 comboCell.DataSource = data.Functions.OrderByDescending(o => o.Score).Select(d => d.Name).ToList();
                 comboCell.Value = data.Functions.OrderByDescending(o => o.Score).Take(1).Select(d => d.Name).FirstOrDefault();
                 
 
-                var textCel3 = (DataGridViewTextBoxCell)(row.Cells[2]);
+                var textCel3 = (DataGridViewTextBoxCell)(row.Cells[3]);
                 textCel3.ValueType = typeof(string);
                 textCel3.Value = string.Join(",", data.SelectedParams);
 
-                var cel4 = (DataGridViewButtonCell) (row.Cells[3]);
-                cel4.Value = "Edit Params";
-
-                var textCell5 = (DataGridViewTextBoxCell)(row.Cells[4]);
-                textCell5.ValueType = typeof(string);
-                textCell5.Value = data.Order;
-                dataGridView1.Rows.Add(row);
-                
+                var cel4 = (DataGridViewButtonCell) (row.Cells[4]);
+                cel4.Value = "...";
             }
 
             dataGridView1.Refresh();
@@ -136,7 +141,7 @@ namespace Automator.UI
             if (dialogResult == DialogResult.OK)
             {
                 //Update training data
-                DBHelper _dbHelper = new DBHelper();
+                var _dbHelper = new DBHelper();
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -151,8 +156,6 @@ namespace Automator.UI
                     }
                     
                 }
-
-
                 //Save the xmls
                   SaveTCsXml();
                   SaveDriverXml();
@@ -183,7 +186,6 @@ namespace Automator.UI
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void SaveTCsXml()
@@ -305,14 +307,53 @@ namespace Automator.UI
                 e.RowIndex >= 0)
             {
                 if (senderGrid.CurrentRow != null)
-                    ((DataGridViewTextBoxCell)(senderGrid.CurrentRow.Cells[2])).ReadOnly = false;
+                    ((DataGridViewTextBoxCell)(senderGrid.CurrentRow.Cells[3])).ReadOnly = false;
+            }
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Do you wan to Exit the application?", "Exit Application", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                var inputDialog = new InputDialog();
+
+                if (senderGrid.CurrentRow != null)
+                    inputDialog.Params = senderGrid.CurrentRow.Cells[3].Value.ToString();
+
+                DialogResult result = inputDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    if (senderGrid.CurrentRow != null)
+                        ((DataGridViewTextBoxCell)(senderGrid.CurrentRow.Cells[3])).Value = inputDialog.Params;
+
+                    inputDialog.Close();
+                }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.RefFormAnalyzeForm.Show();
             this.Close();
-
         }
     }
 }
