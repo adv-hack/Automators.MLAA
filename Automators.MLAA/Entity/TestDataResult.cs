@@ -16,9 +16,5 @@ namespace Entity
         public int Order { get; set; }
         public string TestData { get; set; }
 
-        public override string ToString()
-        {
-            return SelectedFunction;
-        }
-    }
+     }
 }

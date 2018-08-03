@@ -106,13 +106,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 76);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(829, 372);
+            this.dataGridView1.Size = new System.Drawing.Size(862, 372);
             this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-           
             // 
             // testDataResultsBindingSource
             // 
@@ -136,12 +134,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(272, 472);
+            this.button2.Location = new System.Drawing.Point(324, 472);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 17;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // functionsBindingSource1
             // 
@@ -181,7 +180,7 @@
             this.Controls.Add(this.cmbModules);
             this.Controls.Add(this.lblModuleList);
             this.Name = "ShowResultsForm";
-            this.Text = "Analyse";
+            this.Text = "MLATA";
             this.Load += new System.EventHandler(this.Analyse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataResultsBindingSource)).EndInit();

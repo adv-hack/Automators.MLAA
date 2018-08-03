@@ -54,7 +54,7 @@
             // lblModuleList
             // 
             this.lblModuleList.AutoSize = true;
-            this.lblModuleList.Location = new System.Drawing.Point(24, 32);
+            this.lblModuleList.Location = new System.Drawing.Point(20, 32);
             this.lblModuleList.Name = "lblModuleList";
             this.lblModuleList.Size = new System.Drawing.Size(73, 13);
             this.lblModuleList.TabIndex = 3;
@@ -63,7 +63,7 @@
             // cmbModules
             // 
             this.cmbModules.FormattingEnabled = true;
-            this.cmbModules.Location = new System.Drawing.Point(103, 28);
+            this.cmbModules.Location = new System.Drawing.Point(99, 28);
             this.cmbModules.Name = "cmbModules";
             this.cmbModules.Size = new System.Drawing.Size(133, 21);
             this.cmbModules.TabIndex = 4;
@@ -72,7 +72,7 @@
             // lblTestCase
             // 
             this.lblTestCase.AutoSize = true;
-            this.lblTestCase.Location = new System.Drawing.Point(264, 32);
+            this.lblTestCase.Location = new System.Drawing.Point(260, 32);
             this.lblTestCase.Name = "lblTestCase";
             this.lblTestCase.Size = new System.Drawing.Size(69, 13);
             this.lblTestCase.TabIndex = 5;
@@ -80,7 +80,7 @@
             // 
             // txtTestCaseID
             // 
-            this.txtTestCaseID.Location = new System.Drawing.Point(339, 29);
+            this.txtTestCaseID.Location = new System.Drawing.Point(335, 29);
             this.txtTestCaseID.Name = "txtTestCaseID";
             this.txtTestCaseID.Size = new System.Drawing.Size(132, 20);
             this.txtTestCaseID.TabIndex = 6;
@@ -88,7 +88,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(494, 32);
+            this.lblDescription.Location = new System.Drawing.Point(490, 32);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 7;
@@ -96,24 +96,24 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(560, 29);
+            this.txtDescription.Location = new System.Drawing.Point(556, 29);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(351, 20);
             this.txtDescription.TabIndex = 8;
             // 
             // txtcasesteps
             // 
-            this.txtcasesteps.Location = new System.Drawing.Point(27, 177);
+            this.txtcasesteps.Location = new System.Drawing.Point(23, 177);
             this.txtcasesteps.Multiline = true;
             this.txtcasesteps.Name = "txtcasesteps";
             this.txtcasesteps.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtcasesteps.Size = new System.Drawing.Size(884, 167);
+            this.txtcasesteps.Size = new System.Drawing.Size(884, 281);
             this.txtcasesteps.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 146);
+            this.label1.Location = new System.Drawing.Point(20, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 10;
@@ -121,7 +121,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(27, 89);
+            this.textBox2.Location = new System.Drawing.Point(23, 89);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -133,7 +133,7 @@
             // lblGuidelines
             // 
             this.lblGuidelines.AutoSize = true;
-            this.lblGuidelines.Location = new System.Drawing.Point(24, 63);
+            this.lblGuidelines.Location = new System.Drawing.Point(20, 63);
             this.lblGuidelines.Name = "lblGuidelines";
             this.lblGuidelines.Size = new System.Drawing.Size(56, 13);
             this.lblGuidelines.TabIndex = 12;
@@ -141,7 +141,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(257, 393);
+            this.btnClear.Location = new System.Drawing.Point(345, 478);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 13;
@@ -151,7 +151,7 @@
             // 
             // btnAnalyse
             // 
-            this.btnAnalyse.Location = new System.Drawing.Point(396, 393);
+            this.btnAnalyse.Location = new System.Drawing.Point(484, 478);
             this.btnAnalyse.Name = "btnAnalyse";
             this.btnAnalyse.Size = new System.Drawing.Size(75, 23);
             this.btnAnalyse.TabIndex = 14;
@@ -159,7 +159,7 @@
             this.btnAnalyse.UseVisualStyleBackColor = true;
             this.btnAnalyse.Click += new System.EventHandler(this.btnAnalyse_Click);
             // 
-            // Startup
+            // AnalyseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,8 +178,11 @@
             this.Controls.Add(this.cmbModules);
             this.Controls.Add(this.lblModuleList);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Startup";
+            this.MinimizeBox = false;
+            this.Name = "AnalyseForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MLATA";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
