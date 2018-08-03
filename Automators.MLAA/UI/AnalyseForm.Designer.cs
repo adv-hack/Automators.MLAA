@@ -42,15 +42,15 @@ namespace Automator.UI
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAnalyse = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblGuidelines = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblModuleList
@@ -157,6 +157,15 @@ namespace Automator.UI
             this.panel1.Size = new System.Drawing.Size(921, 34);
             this.panel1.TabIndex = 15;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -190,7 +199,6 @@ namespace Automator.UI
             this.button1.Text = "x";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-
             // 
             // panel2
             // 
@@ -214,21 +222,12 @@ namespace Automator.UI
             // 
             this.lblGuidelines.AutoSize = true;
             this.lblGuidelines.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGuidelines.Location = new System.Drawing.Point(771, 115);
+            this.lblGuidelines.Location = new System.Drawing.Point(759, 115);
             this.lblGuidelines.Name = "lblGuidelines";
-            this.lblGuidelines.Size = new System.Drawing.Size(137, 13);
+            this.lblGuidelines.Size = new System.Drawing.Size(153, 13);
             this.lblGuidelines.TabIndex = 12;
-            this.lblGuidelines.Text = "Click Here Read Guidelines";
+            this.lblGuidelines.Text = "Click Here To Read Guidelines";
             this.lblGuidelines.Click += new System.EventHandler(this.lblGuidelines_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
             // 
             // AnalyseForm
             // 
@@ -248,11 +247,12 @@ namespace Automator.UI
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
