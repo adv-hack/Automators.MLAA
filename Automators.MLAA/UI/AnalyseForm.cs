@@ -69,6 +69,9 @@ namespace Automator.UI
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtcasesteps.Clear();
+            cmbModules.Text = "";
+            txtTestCaseID.Text = "";
+            txtDescription.Text = "";
         }
 
         private void btnAnalyse_Click(object sender, EventArgs e)
@@ -91,7 +94,7 @@ namespace Automator.UI
 
         private void lblGuidelines_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("1. Test cases should always be added in new line.  Parameter values should be in double quotes.", "Guidelines", MessageBoxButtons.OK);
+            MessageBox.Show(@"1. Test cases should always be added in new line.  Parameter values should be in double quotes." + Environment.NewLine + " 2.Test cases Steps should always be added in new line. Parameter values should be in double quotes", "Guidelines", MessageBoxButtons.OK);
         }
 
         private void button1_Click(object sender, EventArgs e)
