@@ -22,7 +22,8 @@ namespace Automator.UI
     public partial class ShowResultsForm : Form
     {
 
-        private string _projectPath;
+        private readonly string _projectPath;
+        private readonly string _projectPathDataSheets;
 
         public List<TestDataResult> TestDataResults { get; set; }
         public List<string> _moduleList = new List<string>();
@@ -31,7 +32,10 @@ namespace Automator.UI
 
         public ShowResultsForm()
         {
-            _projectPath = ConfigurationManager.AppSettings["ProjectPath"].ToString() + @"\DataSheets";
+            //_projectPath = "C:\\Progresso\\";
+            //return;;
+            _projectPath = ConfigurationManager.AppSettings["ProjectPath"];
+            _projectPathDataSheets = _projectPath  + @"\DataSheets";
 
             InitializeComponent();
             this.Load += ShowResultsForm_Load;
@@ -164,10 +168,10 @@ namespace Automator.UI
         {
             try
             {
-                string xmlPath = _projectPath + "/" + cmbModules.SelectedValue + "Driver.xml";
+                string xmlPath = _projectPathDataSheets + "/" + cmbModules.SelectedValue + "Driver.xml";
                 XDocument doc = XDocument.Load(xmlPath);
                 XElement rootElement = doc.Root;
-                XElement newElement = new XElement(txtDescription.Text);
+                XElement newElement = new XElement(txtTestCaseID.Text);
 
                 newElement.Add(new XElement("Description", txtDescription.Text));
                 newElement.Add(new XElement("Run", "Yes"));
@@ -186,22 +190,57 @@ namespace Automator.UI
         {
            try
             {
-                string xmlPath = _projectPath + "/" + cmbModules.SelectedValue + "TCs.xml";
-                XDocument doc = XDocument.Load(xmlPath);
-                XElement element = doc.XPathSelectElement(cmbModules.SelectedValue + "/"+ txtTestCaseID.Text);
+                var xmlPath = _projectPathDataSheets + "/" + cmbModules.SelectedValue + "TCs.xml";
 
-                if (element != null)
+                if (!File.Exists(xmlPath))
                 {
-                    foreach (var result in TestDataResults)
+
+                    var newDoc = new XmlDocument();
+                    newDoc.LoadXml($"<{cmbModules.SelectedValue.ToString()}></{cmbModules.SelectedValue.ToString()}>");
+
+                    var writer = new XmlTextWriter(xmlPath, null) { Formatting = Formatting.Indented };
+                    newDoc.Save(writer);
+                    writer.Close();
+                }
+
+                var doc = XDocument.Load(xmlPath);
+
+                var moduleNode = doc.XPathSelectElement(cmbModules.SelectedValue.ToString());
+
+                var testCaseNode = doc.XPathSelectElement(cmbModules.SelectedValue + "/" + txtTestCaseID.Text);
+
+                if (testCaseNode == null)
+                {
+                    var newTestCaseNode = new XElement(txtTestCaseID.Text);
+
+                    moduleNode?.Add(newTestCaseNode);
+                }
+
+                testCaseNode = doc.XPathSelectElement(cmbModules.SelectedValue + "/" + txtTestCaseID.Text);
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+
+                    var elementText = (string)row.Cells["Function"].Value;
+
+                    var param = (string)row.Cells["Params"].Value;
+
+                    var params1 = "";
+
+                    if (!string.IsNullOrEmpty(param))
                     {
-                        string elementText = result.Functions.First().Name + "(" +
-                                             string.Join(",", result.SelectedParams);
+                        param = $"{param}";
 
-                        XElement newElement = new XElement("AT");
-                        newElement.Value = elementText;
-                        element.Add(newElement);
+                        foreach (var para in param.Split(','))
+                        {
+                            params1 += $"\"{para}\",";
+                        }
 
+                        params1 = params1.Substring(0, params1.Length - 1);
                     }
+
+                    var newElement = new XElement("AT") { Value = $"{elementText}({params1})" };
+                    testCaseNode?.Add(newElement);
                 }
 
                 doc.Save(xmlPath);
@@ -213,9 +252,49 @@ namespace Automator.UI
             }
         }
 
-        private void SaveMainDriverXml()
+        public void SaveMainDriverXml()
         {
-            
+            try
+            {
+                var xmlPath = _projectPath + "\\MainDriver.xml";
+
+                if (!File.Exists(xmlPath))
+                {
+
+                    var newDoc = new XmlDocument();
+                    newDoc.LoadXml("<MainDriver></MainDriver>");
+
+                    var writer = new XmlTextWriter(xmlPath, null) {Formatting = Formatting.Indented};
+                    newDoc.Save(writer);
+                    writer.Close();
+                }
+
+                var xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlPath);
+
+                var root = xmlDoc.DocumentElement;
+                var nodeToFind = root?.SelectSingleNode(cmbModules.SelectedValue.ToString());
+
+                if (nodeToFind != null)
+                {
+                    return;
+                }
+
+                var doc = XDocument.Load(xmlPath);
+                var rootElement = doc.Root;
+                var newElement = new XElement(cmbModules.SelectedValue.ToString());
+
+                newElement.Add(new XElement("Driver", $"{cmbModules.SelectedValue.ToString()}Driver.xml"));
+                newElement.Add(new XElement("TestCaseFile", $"{cmbModules.SelectedValue.ToString()}TCs.xml"));
+                newElement.Add(new XElement("Run", "Yes"));
+
+                rootElement?.Add(newElement);
+                doc.Save(xmlPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
