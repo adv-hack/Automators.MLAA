@@ -32,6 +32,7 @@ namespace Automator.UI
         public ShowResultsForm()
         {
             _projectPath = ConfigurationManager.AppSettings["ProjectPath"].ToString() + @"\DataSheets";
+
             InitializeComponent();
             this.Load += ShowResultsForm_Load;
         }
@@ -59,7 +60,6 @@ namespace Automator.UI
                 Name = "Function",
                 ValueType = typeof(string)
             };
-            
             dataGridView1.Columns.Add(col2);
 
             var col3 = new DataGridViewTextBoxColumn
@@ -90,7 +90,6 @@ namespace Automator.UI
 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSize = true;
-           
             dataGridView1.Refresh();
 
             foreach (var data in TestDataResults)
@@ -117,7 +116,6 @@ namespace Automator.UI
                 var textCell5 = (DataGridViewTextBoxCell)(row.Cells[4]);
                 textCell5.ValueType = typeof(string);
                 textCell5.Value = data.Order;
-
                 dataGridView1.Rows.Add(row);
                 
             }
@@ -181,7 +179,7 @@ namespace Automator.UI
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void SaveTCsXml()
@@ -235,6 +233,7 @@ namespace Automator.UI
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Automator.UI
     {
         private string _projectPath;
         private string _functionListFilePath =  @"\ApplicationFiles\functionList.xml";
-        
         private List<Function> _functionsList = new List<Function>();
 
         DBHelper _dbHelper = new DBHelper();
