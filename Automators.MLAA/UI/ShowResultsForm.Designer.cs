@@ -38,6 +38,7 @@
             this.lblModuleList = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.testDataResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.analyseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.functionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -49,17 +50,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.analyseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.startupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataResultsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource3)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startupBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +126,10 @@
             // 
             this.testDataResultsBindingSource.DataMember = "TestDataResults";
             this.testDataResultsBindingSource.DataSource = this.analyseBindingSource;
+            // 
+            // analyseBindingSource
+            // 
+            this.analyseBindingSource.DataSource = typeof(Automator.UI.ShowResultsForm);
             // 
             // functionsBindingSource
             // 
@@ -210,9 +214,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(37, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 13);
+            this.label2.Size = new System.Drawing.Size(133, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "MLATA - Manual Test Case";
+            this.label2.Text = "MLATA - Auto Transformer";
             // 
             // button4
             // 
@@ -225,10 +229,6 @@
             this.button4.Text = "x";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // analyseBindingSource
-            // 
-            this.analyseBindingSource.DataSource = typeof(Automator.UI.ShowResultsForm);
             // 
             // startupBindingSource
             // 
@@ -250,12 +250,13 @@
             this.Controls.Add(this.cmbModules);
             this.Controls.Add(this.lblModuleList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Name = "ShowResultsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MLATA";
             this.Load += new System.EventHandler(this.Analyse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataResultsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource2)).EndInit();
@@ -263,7 +264,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.analyseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startupBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Automator.DataAccess;
 using Entity;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Engine;
 
 namespace Automator.UI
 {
     public partial class ShowResultsForm : Form
     {
-
         private readonly string _projectPath;
         private readonly string _projectPathDataSheets;
         public List<TestDataResult> TestDataResults { get; set; }
@@ -56,7 +50,7 @@ namespace Automator.UI
 
             var col5 = new DataGridViewTextBoxColumn
             {
-                Name = " ",
+                Name = "..",
                 ValueType = typeof(string),
                 Width = 35
             };
@@ -136,9 +130,26 @@ namespace Automator.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(@"Are you sure you want to save XML", @"MLATA", MessageBoxButtons.OKCancel);
 
-            if (dialogResult == DialogResult.OK)
+            if (string.IsNullOrEmpty((cmbModules.Text == null).ToString()))
+            {
+                MessageBox.Show("Please select Module Name", "Module Name", MessageBoxButtons.OK);
+                return;
+            }
+            else if(string.IsNullOrEmpty(txtTestCaseID.Text.Trim()))
+            {
+                MessageBox.Show("Please Enter Test Case ID", "Test Case ID", MessageBoxButtons.OK);
+                return;
+            }
+            else if (string.IsNullOrEmpty(txtDescription.Text.Trim()))
+            {
+                MessageBox.Show("Please Enter Test Case Description", "Test Case Description", MessageBoxButtons.OK);
+                return;
+            }
+
+            var dialogResult = MessageBox.Show(@"Are you sure you want to save XML", @"MLATA", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
             {
                 //Update training data
                 var _dbHelper = new DBHelper();
@@ -146,7 +157,7 @@ namespace Automator.UI
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     var selectedFunction = from r in TestDataResults
-                                          where r.Order == (int)row.Cells["Order"].Value
+                                          where r.Order == (int)row.Cells[".."].Value
                                           select r.SelectedFunction;
                     
                     if (!selectedFunction.First().Equals(((string)row.Cells["Function"].Value)))
@@ -154,24 +165,44 @@ namespace Automator.UI
                         string query = "Insert into TrainingData values('" + (string)row.Cells["Function"].Value + "'," + "'" + (string)row.Cells["Test Data"].Value + "')";
                         _dbHelper.ExecuteNonQuery(query);
                     }
-                    
                 }
+
                 //Save the xmls
-                  SaveTCsXml();
-                  SaveDriverXml();
-                  SaveMainDriverXml();
+
+                SaveTCsXml();
+                SaveDriverXml();
+                SaveMainDriverXml();
+
+                var writeTestCase = MessageBox.Show(@"XML is generated and saved to the project folder!" + Environment.NewLine + "Yes! Even we are surprised!!" + Environment.NewLine + "Well, donations are heartily accepted without any shame ;)" + Environment.NewLine + Environment.NewLine + "By the way do you want to write another test case?", @"New Test Case", MessageBoxButtons.YesNo);
+
+                if (writeTestCase == DialogResult.Yes)
+                {
+                    RefFormAnalyzeForm.Show();
+                    this.Close();
+                }
+                else
+                {
+                    Application.Exit();
+                }
             }
-
-            if(dialogResult == DialogResult.Cancel)
-                Application.Exit();
-
         }
 
         private void SaveDriverXml()
         {
             try
             {
-                string xmlPath = _projectPathDataSheets + "/" + cmbModules.SelectedValue + "Driver.xml";
+                string xmlPath = _projectPathDataSheets + "/" + cmbModules.Text + "Driver.xml";
+                
+                if (!File.Exists(xmlPath))
+                {
+                    var newDoc = new XmlDocument();
+                    newDoc.LoadXml($"<{cmbModules.Text.ToString()}></{cmbModules.Text.ToString()}>");
+
+                    var writer = new XmlTextWriter(xmlPath, null) { Formatting = Formatting.Indented };
+                    newDoc.Save(writer);
+                    writer.Close();
+                }
+
                 XDocument doc = XDocument.Load(xmlPath);
                 XElement rootElement = doc.Root;
                 XElement newElement = new XElement(txtTestCaseID.Text);
@@ -192,13 +223,12 @@ namespace Automator.UI
         {
            try
             {
-                var xmlPath = _projectPathDataSheets + "/" + cmbModules.SelectedValue + "TCs.xml";
+                var xmlPath = _projectPathDataSheets + "/" + cmbModules.Text + "TCs.xml";
 
                 if (!File.Exists(xmlPath))
                 {
-
                     var newDoc = new XmlDocument();
-                    newDoc.LoadXml($"<{cmbModules.SelectedValue.ToString()}></{cmbModules.SelectedValue.ToString()}>");
+                    newDoc.LoadXml($"<{cmbModules.Text.ToString()}></{cmbModules.Text.ToString()}>");
 
                     var writer = new XmlTextWriter(xmlPath, null) { Formatting = Formatting.Indented };
                     newDoc.Save(writer);
@@ -207,9 +237,9 @@ namespace Automator.UI
 
                 var doc = XDocument.Load(xmlPath);
 
-                var moduleNode = doc.XPathSelectElement(cmbModules.SelectedValue.ToString());
+                var moduleNode = doc.XPathSelectElement(cmbModules.Text.ToString());
 
-                var testCaseNode = doc.XPathSelectElement(cmbModules.SelectedValue + "/" + txtTestCaseID.Text);
+                var testCaseNode = doc.XPathSelectElement(cmbModules.Text + "/" + txtTestCaseID.Text);
 
                 if (testCaseNode == null)
                 {
@@ -218,7 +248,7 @@ namespace Automator.UI
                     moduleNode?.Add(newTestCaseNode);
                 }
 
-                testCaseNode = doc.XPathSelectElement(cmbModules.SelectedValue + "/" + txtTestCaseID.Text);
+                testCaseNode = doc.XPathSelectElement(cmbModules.Text + "/" + txtTestCaseID.Text);
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -235,7 +265,7 @@ namespace Automator.UI
 
                         foreach (var para in param.Split(','))
                         {
-                            params1 += $"\"{para}\",";
+                            params1 += $"\"{para.Trim()}\",";
                         }
 
                         params1 = params1.Substring(0, params1.Length - 1);
@@ -244,9 +274,7 @@ namespace Automator.UI
                     var newElement = new XElement("AT") { Value = $"{elementText}({params1})" };
                     testCaseNode?.Add(newElement);
                 }
-
                 doc.Save(xmlPath);
-
             }
             catch (Exception ex)
             {
@@ -275,7 +303,7 @@ namespace Automator.UI
                 xmlDoc.Load(xmlPath);
 
                 var root = xmlDoc.DocumentElement;
-                var nodeToFind = root?.SelectSingleNode(cmbModules.SelectedValue.ToString());
+                var nodeToFind = root?.SelectSingleNode(cmbModules.Text.ToString());
 
                 if (nodeToFind != null)
                 {
@@ -284,10 +312,10 @@ namespace Automator.UI
 
                 var doc = XDocument.Load(xmlPath);
                 var rootElement = doc.Root;
-                var newElement = new XElement(cmbModules.SelectedValue.ToString());
+                var newElement = new XElement(cmbModules.Text.ToString());
 
-                newElement.Add(new XElement("Driver", $"{cmbModules.SelectedValue.ToString()}Driver.xml"));
-                newElement.Add(new XElement("TestCaseFile", $"{cmbModules.SelectedValue.ToString()}TCs.xml"));
+                newElement.Add(new XElement("Driver", $"{cmbModules.Text.ToString()}Driver.xml"));
+                newElement.Add(new XElement("TestCaseFile", $"{cmbModules.Text.ToString()}TCs.xml"));
                 newElement.Add(new XElement("Run", "Yes"));
 
                 rootElement?.Add(newElement);
@@ -310,8 +338,7 @@ namespace Automator.UI
                     ((DataGridViewTextBoxCell)(senderGrid.CurrentRow.Cells[3])).ReadOnly = false;
             }
         }
-
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Do you wan to Exit the application?", "Exit Application", MessageBoxButtons.YesNo);
