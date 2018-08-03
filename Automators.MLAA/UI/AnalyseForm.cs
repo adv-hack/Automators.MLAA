@@ -103,7 +103,7 @@ namespace Automator.UI
 
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                Application.Exit();
             }
         }
 

@@ -27,6 +27,10 @@ namespace Automator.UI
         public ProjectPathForm()
         {
             InitializeComponent();
+
+            Icon icon = Icon.ExtractAssociatedIcon("images\\desktop_icon_new.ico");
+
+            this.Icon = icon;
         }
 
         private void ProjectPathForm_Load(object sender, EventArgs e)
@@ -50,6 +54,7 @@ namespace Automator.UI
                 
                 AnalyseForm startupForm = new AnalyseForm();
                 startupForm.Show();
+                this.Hide();
             }
         }
 

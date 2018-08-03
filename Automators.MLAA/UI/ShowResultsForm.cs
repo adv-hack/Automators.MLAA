@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Automator.UI
         public string TcId;
         public string TcDesc;
         public Form RefFormAnalyzeForm { get; set; }
+        private DataTable functions = null;
 
         public ShowResultsForm()
         {
@@ -47,6 +49,10 @@ namespace Automator.UI
 
         private void ShowResultsForm_Load(object sender, EventArgs e)
         {
+
+            var _dbHelper = new DBHelper();
+
+            functions = _dbHelper.ExecuteQuery("select * from Functions");
 
             var col5 = new DataGridViewTextBoxColumn
             {
@@ -94,6 +100,7 @@ namespace Automator.UI
 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSize = true;
+            dataGridView1.ScrollBars = ScrollBars.Vertical;
             dataGridView1.Refresh();
 
             foreach (var data in TestDataResults)
@@ -113,11 +120,12 @@ namespace Automator.UI
                 comboCell.ValueType = typeof(string);
                 comboCell.DataSource = data.Functions.OrderByDescending(o => o.Score).Select(d => d.Name).ToList();
                 comboCell.Value = data.Functions.OrderByDescending(o => o.Score).Take(1).Select(d => d.Name).FirstOrDefault();
-                
+
+                var param = GetFunctionParams(data.SelectedFunction, data.SelectedParams);
 
                 var textCel3 = (DataGridViewTextBoxCell)(row.Cells[3]);
                 textCel3.ValueType = typeof(string);
-                textCel3.Value = string.Join(",", data.SelectedParams);
+                textCel3.Value = param;
 
                 var cel4 = (DataGridViewButtonCell) (row.Cells[4]);
                 cel4.Value = "...";
@@ -126,6 +134,41 @@ namespace Automator.UI
             dataGridView1.Refresh();
             dataGridView1.AllowUserToAddRows = false;
             this.Refresh();
+        }
+
+        private string GetFunctionParams(string selectedFunction, List<string> selectedParams)
+        {
+            var getFunctionDetail = functions.Select("Function = '" + selectedFunction + "'");
+
+            var functionParams = getFunctionDetail[0][1].ToString().Trim().Split(' ');
+
+            functionParams = functionParams.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
+
+            var buildParam = "";
+
+            int i;
+
+            for (i = 0; i < selectedParams.Count; i++)
+            {
+                if (i >= functionParams.Length)
+                {
+                    buildParam += "EXTRA PARAM-" + selectedParams[i];
+                }
+                else
+                {
+                    buildParam += selectedParams[i] + ",";
+                }
+            }
+
+            if (i < functionParams.Length)
+            {
+                for (var j = i; j < functionParams.Length; j++)
+                {
+                    buildParam += "PARAM NA-" + functionParams[j] + ",";
+                }
+            }
+
+            return buildParam.Substring(0, buildParam.Length - 1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -345,7 +388,7 @@ namespace Automator.UI
 
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                Application.Exit();
             }
         }
 
