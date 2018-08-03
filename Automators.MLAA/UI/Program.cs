@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Automator.DataAccess;
-using DevExpress.UserSkins;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
 
 namespace Automator.UI
 {
@@ -21,7 +17,7 @@ namespace Automator.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            BonusSkins.Register();
+            //BonusSkins.Register();
             Application.Run(new ProjectPathForm());
 
         }

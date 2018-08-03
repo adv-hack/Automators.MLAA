@@ -117,50 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="testDataResultsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>357, 17</value>
-  </metadata>
-  <metadata name="analyseBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>186, 17</value>
-  </metadata>
-  <metadata name="functionsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>571, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAeRJREFUWEdj
-        GAWjAB2cv3HnPhD/pw2+ew9qDW4AUnjwzKX/K3ce/H/66s3/mw8e/7/l4AkshpGHodbgBiBFIMsnLFn3
-        f//pi/+nrNj4f+qKTVgNIwdDrcENQIpAPj9w5iJYw9ELV/8fu3gVwyByMdQa3ACkaNWWHf+nL1xGVQwy
-        k2gHxGbm/VczsqAqBpk56gCaOMDAx/C/Q4k6VjlkTDMHhCyX+p98jh+rHDKmmgN0nY1R+FmPuP/7TJYD
-        s3WcTFDkkDHFDjCL0vufeELwf8xuUbiYkb/B/7L/zP9NI/XAfJBc3CHh/4Z+BnA1MEy2A3RdjP+Hr5f4
-        X/qH5X/eS06U+PbsUgSLqRlD+A5lav8LPrD/L/rO+t9vptx/TWszuFqyHQAyFOTLxJOC/7WsEAaCcMJR
-        of8RGyRQxHQcTf4nnRYA6wHphYmT7QA9YAjEHRAGGxh7UPi/gZchWBzkmOKfrEBLECGi52H0P3KL2P+y
-        f8z/U6/w/Tf0hagFYbIdAMMgi/Jec8DTgG2u5v/S3yz/tWxN4WpAcqAocGtR/q9ugqqfYgeAsLa9yX+H
-        UoiPsWU/UJCDogBZDIap4gBkjJz9iMFUdwCpeNQBQ8sBzb2TwRqoiUFmEu0AWmKoNaNgFEABAwMASJEU
-        GXcOB2kAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAATpJREFUWEdj
-        GAWjgBZAesonYaVpX4qgXPoCpSmf1BSnfbmnOO3zKqgQ/YDytK/GilM/vwBa/p/uDpCf9tUT6PMvUMvp
-        6wCl6V+igRb+RLKcfg5QmPapHGjZPzTL6eCAhv9MwPieiMViGKadAxTm/+cAWrAGzUJ0TBsHqEx6y6cw
-        7fNeLBaiY+o7QHbyVynF6Z8vYbEMG6auA5AKGGyWYcPUc4D8jE+WQAPfoFlACA8jB4CA/OQPikBDb6JZ
-        gg9TPxEqzv4iDjT4DJpFuDD1HQAC4t0vuJWmfdqGxUJ0TBsHgID2qv9swLJgKRZLkTHtHAAG//8zAhsd
-        HVgshmEaOwAKFKZ+yQda9hfNcvo5AAQGtDqGAeXpn52Aln4cMAeAwIA2yWAAqcAaGAeAAKjAArWUoNxR
-        MArwAAYGAOw530cCMZyIAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="functionsBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>752, 17</value>
-  </metadata>
-  <metadata name="functionsBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="functionsBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>204, 56</value>
-  </metadata>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -178,10 +135,4 @@
         op8lBeP7syPjo9IMg9AfNcTQhEWXDsMAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="startupBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
-  </metadata>
 </root>
